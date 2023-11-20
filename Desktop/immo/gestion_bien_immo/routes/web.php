@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/comment', [CommentairesController::class, 'commenter']);
+Route::get('/comment_liste', [CommentairesController::class, 'liste_commentaire']);
+Route::post('/ajout_commentaire', [CommentairesController::class, 'commentaire_ajouter']);
+
+Route::get('/showComment{id}', [CommentairesController::class, 'show']);
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

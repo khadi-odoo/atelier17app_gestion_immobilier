@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('commentaires', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('bien_id')->unsigned();
+            $table->string('auteur');
+            $table->string('contenu');
+            $table->date('datePub');
+            // $table->integer('user_id')->unsigned();
+            // $table->integer('bien_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('bien_id')->nullable();
             $table->foreign('bien_id')->references('id')->on('biens');
             $table->timestamps();
         });

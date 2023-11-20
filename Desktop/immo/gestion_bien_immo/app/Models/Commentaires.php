@@ -9,6 +9,13 @@ class Commentaires extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'auteur',
+        'contenu',
+        'datePub', 
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class);
