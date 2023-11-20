@@ -27,13 +27,9 @@
         <div class="row">
 
  <h1>Listes de tous les commentaires</h1>
-    {{-- <a href="/ajouter_note" class="btn btn-primary">Ajouter une note</a > --}}
         <hr>  
-           {{-- @if (session('status')) --}}
         <div class="alert alert-succes">
-          {{-- {{session('status')}} --}}
         </div>
-        {{-- @endif --}}
 
          <table>
             <thead>
@@ -55,13 +51,6 @@
                     <td>{{$commentaire->datePub}}</td>
                     
                  @endforeach
-                        {{-- <form action="" method="post">
-                            @csrf @method('DELETE') 
-                            <button class="btn btn-danger">Delete</button>
-                        </form> --}}
-                        {{-- <a href="{{ route('show.note',$note->id)}}" class="btn btn-warning">Update</a> --}}
-                    {{-- </td> --}}
+                      
                     </tr>
-                {{-- @endforeach                        --}}
          </table>
-         {{-- @stop --}}
