@@ -48,11 +48,24 @@
                     
                  {{-- @endforeach --}}
                            <td>
-                            {{-- <form action="/delete_commentaire:{{$commentaire->id}}" method="post"> --}}
-                                {{-- @csrf @method('DELETE')  --}}
-                            {{-- </form> --}}
-                            <a href="/modif_commentaire/{{$commentaire->id}}" class="btn btn-primary">delete</a>
+                            {{-- <form action="/delete_commentaire:{{$commentaire->id}}" method="post">
+                                @csrf @method('DELETE')
+                      
+    
+                            <a href="/delete_commentaire/{{$commentaire->id}}" class="btn btn-primary">delete</a>
+                           
+                         <a href="/modif_commentaire/{{$commentaire->id}}" class="btn btn-warning">Update</a>
+                         </form> --}}
+
+                         <form action="/delete_commentaire/{{$commentaire->id}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-primary">Delete</button>
                             <a href="/modif_commentaire/{{$commentaire->id}}" class="btn btn-warning">Update</a>
+
+                        </form>
+
+
                            </td>
                     
 

@@ -86,18 +86,13 @@ public function rules()
      $commentaires->contenu = $request->contenu;
      $commentaires->datePub = $request->datePub;
      $commentaires->update();
-     return redirect('/commentaire')->with('status', 'Note Modifier avec succèss');
+    return redirect('/comment_liste')->with('status', 'commentaire Modifier avec succèss');
+
  }
-
-
  public function destroy($id){
 
      $commentaire = Commentaires::find($id);
      $commentaire->delete();
-     return redirect('/commentaire')->with('status', 'Note Modifier avec succèss');
-    //  return redirect()->route('comment_liste')->with('success', 'commentaire supprimé avec succès');
-
-
-
+     return redirect('/comment_liste')->with('status', 'commentaire supprimer avec succèss');
 }
 }
