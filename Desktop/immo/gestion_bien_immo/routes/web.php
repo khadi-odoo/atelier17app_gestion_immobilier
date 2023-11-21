@@ -26,9 +26,9 @@ use \App\Http\Controllers\Admin\PropertyController;
 
 //route de bouh
 
-Route::get('/comment', [CommentairesController::class, 'commenter']);
+Route::get('/comment/{id}', [CommentairesController::class, 'commenter']);
 Route::get('/comment_liste', [CommentairesController::class, 'liste_commentaire']);
-Route::post('/ajout_commentaire', [CommentairesController::class, 'commentaire_ajouter']);
+Route::post('/ajout_commentaire/{id}', [CommentairesController::class, 'commentaire_ajouter']);
 
 Route::get('/modif_commentaire/{id}', [CommentairesController::class, 'update']);
 Route::post('/update/traitement', [CommentairesController::class, 'update_traitement']);
@@ -39,7 +39,7 @@ Route::delete('/delete_commentaire/{id}', [CommentairesController::class, 'destr
 
 $idRegex =  '[0-9]+';
 $slugRegex =  '[0-9a-z\-]+';
-Route::get('/', [HomeController::class, 'index'] );
+Route::get('/', [App\Http\Controllers\PropertyController::class, 'index'] ); 
 Route::get('/biens', [App\Http\Controllers\PropertyController::class,  'index' ] )->name('property.index');        
 Route::get('/biens/{slug}-{property}', [App\Http\Controllers\PropertyController::class,  'show' ] )->name('property.show')->where([
     'property' => $idRegex,

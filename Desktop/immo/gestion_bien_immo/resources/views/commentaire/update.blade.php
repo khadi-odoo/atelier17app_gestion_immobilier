@@ -31,10 +31,10 @@
     <label for="exampleTextarea" class="form-label mt-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">donner votre apercu du bien</font></font></label><br><br>
     <textarea class="form-control" id="exampleTextarea" rows="3" name="contenu">{{ $commentaires->contenu }}</textarea>
 
-    <div class="form-group">
+    {{-- <div class="form-group">
         <label for="exampleInputEmail1" class="form-label mt-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date</font></font></label>
         <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name="datePub" value="{{$commentaires->datePub}}">
-      </div><br><br>
+      </div><br><br> --}}
 
       <button type="submit" class="btn btn-primary">Modifier un commentaire</button><br><br>
   </div>

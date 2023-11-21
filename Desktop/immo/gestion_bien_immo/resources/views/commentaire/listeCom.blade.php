@@ -1,22 +1,10 @@
-{{-- @extends('master')
+@extends('base')
 
-@section('title', 'List of eleves')
+@section('title', 'Listes des commentaire')
 
-@section('H1')
-    Liste des notes
-@stop
 
-@section('content') --}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://bootswatch.com/5/pulse/bootstrap.css">
-    <title>Document</title>
-</head>
-<body>
+@section('content')
+
         <div class="row">
  <h1>Listes de tous les commentaires</h1>
     {{-- <a href="/ajouter_note" class="btn btn-primary">Ajouter une note</a > --}}
@@ -73,4 +61,4 @@
                     </tr>
                 @endforeach
          </table>
-        
+        @stop

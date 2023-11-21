@@ -13,7 +13,7 @@ class Commentaires extends Model
     protected $fillable = [
         'auteur',
         'contenu',
-        'datePub', 
+    
     ];
 
     public function users()

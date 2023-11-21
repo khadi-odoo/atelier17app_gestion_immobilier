@@ -7,7 +7,11 @@
         <p class="card-text"> {{ $property->surface }}m² - {{ $property->postal_code }} </p>
         <div class="text-primary fw-bold " style="font-size:1.4em;">
             {{ number_format($property->price, thousands_separator: '') }}FCFA
-        </div>
+
+               <form action="/comment/{{$property->id}}" method="GET" >
+               <button   class="btn btn-primary">commenter</button>
+               
+            </form>
     </div>
 </div>
 

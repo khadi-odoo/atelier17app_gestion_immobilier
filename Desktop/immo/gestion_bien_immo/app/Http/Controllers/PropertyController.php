@@ -67,10 +67,10 @@ class PropertyController extends Controller
         ]);
     }
 
-    public function contact(Property $property, PropertyContactRequest $request ){
-        dd('tesst');
-        Mail::send( new PropertyContactMail( $property, $request-> validated() ) );
-        return back()->with('success','votre demande de contact à bien été envoyé');
-    }
+    // public function contact(Property $property, PropertyContactRequest $request ){
+    //     dd('tesst');
+    //     Mail::send( new PropertyContactMail( $property, $request-> validated() ) );
+    //     return back()->with('success','votre demande de contact à bien été envoyé');
+    // }
    
 }
