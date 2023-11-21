@@ -23,19 +23,16 @@ class CommentairesController extends Controller
         return view('commentaire.listeCom', compact('commentaires'));
 
     }
-
-
     public function commentaire_ajouter(Request $request){
-
-
         $request->validate([
             'auteur' => 'required|alpha|max:20', 
             'contenu' => 'required|between:0,100',
             'datePub' => 'required|date'
          ]);
     
+    //On crée une nouvelle instance du modèle Commentaires
     $commentaire = new Commentaires();
-
+     //On attribue les valeurs des champs du formulaire aux propriétés du modèle Commentaires
     $commentaire->id = $request->id;
     $commentaire->auteur = $request->auteur;
     $commentaire->contenu = $request->contenu;
@@ -45,16 +42,8 @@ class CommentairesController extends Controller
 
     }
 
-// public function show($id){
-
-//     $users = User::all();
-//     $commentaires = Commentaires::find($id);
-//     //dd($eleves);
-//     return view('commentaire.listeCom',compact('commentaires','users'));
-
-// }
-
 public function update($id){
+    //on utilise la méthode find($id) pour récupèrer un enregistrement par son identifiant.
     $commentaires = Commentaires::find($id);
     return view('commentaire.update',compact('commentaires'));
 }
