@@ -1,8 +1,20 @@
 <?php
 
-use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+
+//use de bouh
+use App\Http\Controllers\CommentairesController;
+
+
+
+//use de ciré
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\OptionController;
+use \App\Http\Controllers\Admin\PropertyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//route de bouh
 
 Route::get('/comment', [CommentairesController::class, 'commenter']);
 Route::get('/comment_liste', [CommentairesController::class, 'liste_commentaire']);
@@ -27,17 +36,42 @@ Route::post('/ajout_commentaire', [CommentairesController::class, 'commentaire_a
 Route::get('/modif_commentaire/{id}', [CommentairesController::class, 'update']);
 Route::post('/update/traitement', [CommentairesController::class, 'update_traitement']);
 
-
-
 Route::delete('/delete_commentaire/{id}', [CommentairesController::class, 'destroy']);
 
+// Route de ciré 
+
+$idRegex =  '[0-9]+';
+$slugRegex =  '[0-9a-z\-]+';
+Route::get('/', [HomeController::class, 'index'] );
+
+// Route::prefix('/biens')->controller('App\Http\Controllers\PropertyController')->group(function () {
+//     Route::get('')
+// });
+
+Route::get('/biens', [App\Http\Controllers\PropertyController::class,  'index' ] )->name('property.index');        
+Route::get('/biens/{slug}-{property}', [App\Http\Controllers\PropertyController::class,  'show' ] )->name('property.show')->where([
+    'property' => $idRegex,
+    'slug' => $slugRegex,
+]);        
+
+Route::post('/biens/{property}/contact', [App\Http\Controllers\PropertyController::class, 'contact'])->name('property.contact')->where([
+    'property' => $idRegex
+]);
 
 
 
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::resource('property', PropertyController::class)->except(['show']);
+    Route::resource('option', OptionController::class)->except(['show']);
+});
 
 
 
+//Route de breeze
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
