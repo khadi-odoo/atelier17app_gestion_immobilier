@@ -24,7 +24,17 @@ Route::get('/comment', [CommentairesController::class, 'commenter']);
 Route::get('/comment_liste', [CommentairesController::class, 'liste_commentaire']);
 Route::post('/ajout_commentaire', [CommentairesController::class, 'commentaire_ajouter']);
 
-Route::get('/showComment{id}', [CommentairesController::class, 'show']);
+Route::get('/modif_commentaire/{id}', [CommentairesController::class, 'update']);
+Route::post('/update/traitement', [CommentairesController::class, 'update_traitement']);
+
+
+
+Route::delete('/delete_commentaire/{id}', [CommentairesController::class, 'destroy']);
+
+
+
+
+
 
 
 

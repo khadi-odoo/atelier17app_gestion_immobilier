@@ -17,19 +17,15 @@
     <title>Document</title>
 </head>
 <body>
-    
-
-
-
-
-
-
         <div class="row">
-
  <h1>Listes de tous les commentaires</h1>
+    {{-- <a href="/ajouter_note" class="btn btn-primary">Ajouter une note</a > --}}
         <hr>  
+           @if (session('status'))
         <div class="alert alert-succes">
+          {{session('status')}}
         </div>
+        @endif
 
          <table>
             <thead>
@@ -50,7 +46,18 @@
                     <td>{{$commentaire->contenu}}</td>
                     <td>{{$commentaire->datePub}}</td>
                     
-                 @endforeach
-                      
+                 {{-- @endforeach --}}
+                           <td>
+                            {{-- <form action="/delete_commentaire:{{$commentaire->id}}" method="post"> --}}
+                                {{-- @csrf @method('DELETE')  --}}
+                            {{-- </form> --}}
+                            <a href="/modif_commentaire/{{$commentaire->id}}" class="btn btn-primary">delete</a>
+                            <a href="/modif_commentaire/{{$commentaire->id}}" class="btn btn-warning">Update</a>
+                           </td>
+                    
+
+                   </td> 
                     </tr>
+                @endforeach
          </table>
+        

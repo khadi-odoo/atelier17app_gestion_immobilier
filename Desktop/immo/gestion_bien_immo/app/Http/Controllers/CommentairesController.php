@@ -17,7 +17,11 @@ class CommentairesController extends Controller
     }
 
     public function liste_commentaire(){
-        return view('commentaire.listeCom');
+
+        // $users = User::all();
+         $commentaires = Commentaires::all();
+        return view('commentaire.listeCom', compact('commentaires'));
+
     }
 
 
@@ -41,14 +45,59 @@ class CommentairesController extends Controller
 
     }
 
-public function show($id){
+// public function show($id){
 
-    $users = User::all();
+//     $users = User::all();
+//     $commentaires = Commentaires::find($id);
+//     //dd($eleves);
+//     return view('commentaire.listeCom',compact('commentaires','users'));
+
+// }
+
+public function update($id){
     $commentaires = Commentaires::find($id);
-    //dd($eleves);
-    return view('commentaire.listeCom',compact('commentaires','users'));
-    dd($commentaires);
+    return view('commentaire.update',compact('commentaires'));
+}
+ 
+public function rules()
+     {
+         return [
+             'auteur' => 'required',
+             'contenu' => 'required',
+             'datePub' => 'required',
+         ];
+     }
+     public function messages()
+     {
+         return [
+             'auteur.required' => 'Desolé! Le champ auteur est obligatoire',
+             'contenu.required' => 'Desolé! Le champ contenu est obligatoire',
+             'datePub.required' => 'Desolé! Le champ datePub est obligatoire',
+         ];
+     }
+
+ public function update_traitement (Request $request)
+ {
+     $request->validate($this->rules(), $this->messages());
+
+     $commentaires= Commentaires::find($request->id);
+     $commentaires->id = $request->id;
+     $commentaires->auteur = $request->auteur;
+     $commentaires->contenu = $request->contenu;
+     $commentaires->datePub = $request->datePub;
+     $commentaires->update();
+     return redirect('/commentaire')->with('status', 'Note Modifier avec succèss');
+ }
+
+
+ public function destroy($id){
+
+     $commentaire = Commentaires::find($id);
+     $commentaire->delete();
+     return redirect('/commentaire')->with('status', 'Note Modifier avec succèss');
+    //  return redirect()->route('comment_liste')->with('success', 'commentaire supprimé avec succès');
+
+
 
 }
-
 }
