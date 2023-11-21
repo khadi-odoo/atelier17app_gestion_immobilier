@@ -58,7 +58,7 @@ class PropertyController extends Controller
     public function show(string $slug, Property $property)
     {
         $exceptedSlug = $property->getSlug();
-        dd($slug);
+        // dd($slug);
         if($slug !== $exceptedSlug ){
             return to_route('property.show', ['slug' => $exceptedSlug  , 'property' => $property]);
         }
