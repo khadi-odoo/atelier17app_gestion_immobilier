@@ -1,7 +1,11 @@
 <?php
 
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\RouteFileRegistrar;
+use App\Http\Middleware;
+use App\Http\Middleware\IsAdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +32,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+
+Route::get('/admin', function () {
+    return view('test');
+})->middleware(['isAdmin', 'verified'])->name('admin');
+
+
+// Route::get('/admin', function () {
+//     // Vérifie si l'utilisateur est autorisé à accéder à cette page
+//     $this->middleware('isAdmin:admin');
+
+//     // Affiche la page d'administration
+//     return view('test');
+// });
+require __DIR__ . '/auth.php';

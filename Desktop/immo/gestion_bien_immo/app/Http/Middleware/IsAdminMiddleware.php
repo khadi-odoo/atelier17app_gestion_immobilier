@@ -17,16 +17,20 @@ class IsAdminMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
+        if (Auth::check()) {
 
-        if (auth()->user()->role == 'admin') {
-            return $next($request);
+            if (Auth::user()->role == 'admin') {
+                return $next($request);
+            } else {
+                return redirect('/dashbord')->with('message', 'Accès réfusé puisque vous n\'êtes pas Admin');
+            }
         } else {
-            //dd('no way');
-            return redirect()->back()->with('success', 'You have not admin acess');
-
-            // return back()->withErrors(['error' => 'Vous navez pas acces a cette page']);
         }
+        return redirect('/login')->with('message', 'Connecte toi pour accéder à ton espace');
+
+        return $next($request);
     }
 }
+;;;;;;;;;

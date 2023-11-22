@@ -17,10 +17,19 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function hasRole($role)
+    {
+        return $this->role == $role;
+    }
+
+
     protected $fillable = [
         'name',
         'email',
         'password',
+
+
     ];
 
     /**
@@ -32,6 +41,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
 
     /**
      * The attributes that should be cast.
