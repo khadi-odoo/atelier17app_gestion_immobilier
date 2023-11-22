@@ -53,7 +53,7 @@ class PropertyPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Property $property): bool
+    public function restore(User $user, Property $propgiterty): bool
     {
         //
     }
