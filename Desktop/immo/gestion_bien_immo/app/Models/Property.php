@@ -24,6 +24,7 @@ class Property extends Model
         "address",
         "postal_code",
         "sold",
+        "image",
     ];
 
     public function options(): BelongsToMany {

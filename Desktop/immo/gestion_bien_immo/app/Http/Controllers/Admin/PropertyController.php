@@ -28,16 +28,7 @@ class PropertyController extends Controller
     public function create()
     {
         $property = new Property();
-        $property->fill([
-            'surface' => 40,
-            'rooms' =>3,
-            'bedrooms' =>1,
-            'description' => 'Magnifique',
-            'floor' => 0,
-            'city' =>'Dakar',
-            'sold' => false,
-        ]);
-        
+        $property->fill([ 'title' => 'Villa', 'price' => '3790000', 'surface' => 40, 'rooms' =>3, 'bedrooms' =>1, 'description' => 'Magnifique  au bord de la plage', 'floor' => 0, 'city' =>'Dakar', 'address' => 'Mermoz comico', 'postal_code' =>'23444', 'sold' => false ]); 
         return view('admin.properties.form', [
             'property' => $property,
             'options' => Option::pluck('name', 'id'),
@@ -49,29 +40,30 @@ class PropertyController extends Controller
      */
     public function store(PropertyFormRequest $request)
     {
-        $property = Property::create($request->validated());
+        $data = $request -> validated();
+        $image = $request ->validated('image');
+        if( $image !== null && !$image ->getError() ) {
+           $data['image'] = $image -> store('propertyImg', 'public');
+
+        }
+
+        $property = Property::create($data);
         $property ->options()->sync($request->validated('options')); 
         return to_route('admin.property.index')->with('success', 'Le bien a bien été crée');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+  
+    public function image(string $image, $dataWhereStore)
     {
-        //
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Property $property)
-    {
-      
-        return view('admin.properties.form', [
-            'property' => $property,
-            'options' =>Option::pluck('name', 'id'),
-        ]);
+    {  
+        return view('admin.properties.form', ['property' => $property, 'options' =>Option::pluck('name', 'id') ]);
     }
 
     /**
@@ -79,10 +71,17 @@ class PropertyController extends Controller
      */
     public function update(PropertyFormRequest $request, Property $property)
     {
+        // $image = $request->validated('image');
+        /** @var UploadFile | null $image */
+        
+
+      
+        // $property -> update($data);
         $property ->update($request -> validated());
         $property ->options()->sync($request->validated('options')); 
         return to_route('admin.property.index')->with('success', 'Le bien a bien été édité');
     }
+
 
     /**
      * Remove the specified resource from storage.

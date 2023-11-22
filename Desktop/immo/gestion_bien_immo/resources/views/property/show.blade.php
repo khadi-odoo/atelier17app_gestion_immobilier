@@ -17,12 +17,16 @@
 
             <div class="mt-4">
                 <h4>Intéressé par ce bien ?</h4>
+                <img src="/storage/{{ $property->image }}" class="card-img-top" style="width: 350px; ">
             </div>
+
+
 
             <form action=" {{ route('property.contact', $property) }} " method="post">
                 @csrf 
                 @method('post')
                 <div class="row mt-3 g-3">
+                   
                     @include('shared.input', ['class' => 'col', 'name' => 'firstname', 'label' => 'Nom', 'value' => 'jONh'])
                     @include('shared.input', ['class' => 'col', 'name' => 'lastname', 'label' => 'Prénom' ,'value' => 'jONh'])
                 </div>

@@ -34,6 +34,7 @@ class PropertyFormRequest extends FormRequest
             'postal_code' => ['required',  'min:3'],
             'sold' => ['required', 'boolean'],
             'options' => ['array', 'exists:options,id'],
+            'image' => ['max:2000'],
         ];
     }
 }
