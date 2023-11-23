@@ -21,10 +21,6 @@
             <td>{{ $option -> name }}</td>     
             <td> @include('shared.formBtn', [ 'method' =>'get', 'token' => false,  'value' => 'Editer', 'action' => 'admin.option.edit', 'argument' => $option ]) </td>
             <td> @include('shared.formBtn', [ 'anothermethod' => 'delete', 'class' => 'btn btn-danger', 'value' => 'Supprimer', 'action' => 'admin.option.destroy', 'argument' => $option ]) </td>
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
         </tr>
         @endforeach
     </tbody>

@@ -1,8 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Route;
-=======
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\RouteFileRegistrar;
@@ -13,15 +10,10 @@ use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\CommentairesController;
 //use de ciré
 
->>>>>>> develop
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\OptionController;
 use \App\Http\Controllers\Admin\PropertyController;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,32 +25,6 @@ use \App\Http\Controllers\Admin\PropertyController;
 |
 */
 
-<<<<<<< HEAD
-$idRegex =  '[0-9]+';
-$slugRegex =  '[0-9a-z\-]+';
-Route::get('/', [HomeController::class, 'index'] );
-
-// Route::prefix('/biens')->controller('App\Http\Controllers\PropertyController')->group(function () {
-//     Route::get('')
-// });
-
-Route::get('/biens', [App\Http\Controllers\PropertyController::class,  'index' ] )->name('property.index');        
-Route::get('/biens/{slug}-{property}', [App\Http\Controllers\PropertyController::class,  'show' ] )->name('property.show')->where([
-    'property' => $idRegex,
-    'slug' => $slugRegex,
-]);        
-
-Route::post('/biens/{property}/contact', [App\Http\Controllers\PropertyController::class, 'contact'])->name('property.contact')->where([
-    'property' => $idRegex
-]);
-
-
-
-Route::prefix('admin')->name('admin.')->group(function(){
-    Route::resource('property', PropertyController::class)->except(['show']);
-    Route::resource('option', OptionController::class)->except(['show']);
-});
-=======
 
 
 // Route de ciré 
@@ -128,4 +94,3 @@ Route::get('/admin', function () {
 //     return view('test');
 // });
 require __DIR__ . '/auth.php';
->>>>>>> develop
