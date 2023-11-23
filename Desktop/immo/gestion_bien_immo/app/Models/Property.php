@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class Property extends Model
 {
@@ -34,6 +36,11 @@ class Property extends Model
     public function getSlug() : string {
         return str::slug($this->title);
     }
+    
+    public function imageUrl() :string
+    {
+        return Storage::disk('public')->url($this -> image);
+    } 
 }
 
 

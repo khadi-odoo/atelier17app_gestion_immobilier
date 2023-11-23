@@ -1,6 +1,6 @@
 <div class="card" >
     @if ($property->image)
-    <img src="/storage/{{ $property->image }}" class="card-img-top" alt="">
+    <img src="{{ $property->imageUrl()  }}" class="card-img-top" alt="">
      @endif
     <div class="card-body">
       <h5 class="card-title">{{ $property->title }}</h5>
