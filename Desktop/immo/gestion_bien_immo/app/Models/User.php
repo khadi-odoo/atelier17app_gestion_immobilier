@@ -17,10 +17,26 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+<<<<<<< HEAD
+=======
+
+    public function hasRole($role)
+    {
+        return $this->role == $role;
+    }
+
+
+>>>>>>> develop
     protected $fillable = [
         'name',
         'email',
         'password',
+<<<<<<< HEAD
+=======
+        'role',
+
+
+>>>>>>> develop
     ];
 
     /**
@@ -33,6 +49,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> develop
     /**
      * The attributes that should be cast.
      *

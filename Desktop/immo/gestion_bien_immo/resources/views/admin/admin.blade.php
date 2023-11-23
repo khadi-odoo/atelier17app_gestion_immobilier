@@ -11,7 +11,12 @@
     {{-- Tom select library --}}
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<<<<<<< HEAD
 
+=======
+{{-- Bouh botstrap link --}}
+<link rel="stylesheet" href="https://bootswatch.com/5/pulse/bootstrap.css">
+>>>>>>> develop
     {{-- Title --}}
     <title>@yield('title') | Administration </title>
 </head>
@@ -36,10 +41,17 @@
             </div>
         </div>
         <div class="container-fluid">
+<<<<<<< HEAD
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+=======
+            {{-- <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> --}}
+>>>>>>> develop
         </div>
 
     </nav>

@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Agence</a>
@@ -43,6 +44,45 @@
 
     </nav>
 
+=======
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Agence</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @php
+            $route = request()
+            ->route()
+            ->getName();
+            @endphp
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ route('property.index') }}" @class(['nav-link', 'active'=> str_contains($route, 'property.')])>Les Biens</a>
+                   
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-end mt-2">
+            <div class="col-auto">
+                @if (Route::has('login'))
+                @auth
+                <a href="{{ url('/dashboard') }}" class="btn btn-primary">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+                @endif
+                @endauth
+                @endif
+            </div>
+        </div>
+    </div>
+>>>>>>> develop
 
 
     @yield('content')
@@ -51,4 +91,8 @@
 
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> develop
