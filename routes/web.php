@@ -35,7 +35,6 @@ use \App\Http\Controllers\Admin\PropertyController;
 Route::get('/', [App\Http\Controllers\PropertyController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->prefix('biens')->group( function(){
-
     $idRegex =  '[0-9]+';
     $slugRegex =  '[0-9a-z\-]+';
     Route::get('/', [App\Http\Controllers\PropertyController::class,  'index'])->name('property.index');

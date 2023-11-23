@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Mail\PropertyContactMail;
 use App\Http\Requests\PropertyContactRequest;
@@ -67,17 +68,24 @@ class PropertyController extends Controller
         ]);
     }
 
-    public function destroy(Property $property)
+    public function destroy(User $user, Property $property)
     {
-        Gate::authorize('update', $property);
-        $property->delete();
-        return to_route('property.index')->with('success', 'Le bien a bien été supprimé');
+
+        if (Gate::forUser($user)->allows('destroy', $property)) {
+            return to_route('property.index')->with('success', 'Le bien a bien été supprimé');
+        }
+
+        // Gate::authorize('update', $property);
+        // $property->delete();
+        // return to_route('property.index')->with('success', 'Le bien a bien été supprimé');}
+
+        // public function contact(Property $property, PropertyContactRequest $request ){
+        //     dd('tesst');
+        //     Mail::send( new PropertyContactMail( $property, $request-> validated() ) );
+        //     return back()->with('success','votre demande de contact à bien été envoyé');
+        // }
+
+
+
     }
-
-    // public function contact(Property $property, PropertyContactRequest $request ){
-    //     dd('tesst');
-    //     Mail::send( new PropertyContactMail( $property, $request-> validated() ) );
-    //     return back()->with('success','votre demande de contact à bien été envoyé');
-    // }
-
 }
