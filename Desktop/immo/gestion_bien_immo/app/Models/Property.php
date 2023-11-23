@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 
-=======
->>>>>>> develop
 
 class Property extends Model
 {
@@ -29,7 +26,7 @@ class Property extends Model
         "address",
         "postal_code",
         "sold",
-        "image",
+        "sold",
     ];
 
     public function options(): BelongsToMany {
@@ -39,14 +36,11 @@ class Property extends Model
     public function getSlug() : string {
         return str::slug($this->title);
     }
-<<<<<<< HEAD
     
     public function imageUrl() :string
     {
         return Storage::disk('public')->url($this -> image);
     } 
-=======
->>>>>>> develop
 }
 
 
