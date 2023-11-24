@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class PropertyController extends Controller
 {
 
-    private function extractDataWithImage(Property $property, PropertyFormRequest $request): array 
+    private function extractDataWithImage(PropertyFormRequest $request, Property $property ): array 
     {
         // La je traite les données qui sont envoyé par le navigateur
         $data = $request -> validated();
@@ -26,9 +26,11 @@ class PropertyController extends Controller
             Storage::disk('public')->delete($property -> image);
         }
         $data['image'] = $image -> store('propertyImg', 'public');
+        // dd($data);
         return $data;
 
     }
+
 
     /**
      * Display a listing of the resource.
@@ -56,16 +58,24 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PropertyFormRequest $request)
-    {   
-        $property = Property::create($this->extractDataWithImage( new Property(), $request ));
+    public function store(PropertyFormRequest $request, Property $property	)
+    {     
+        // $data = $request -> validated();
+        // $image = $request ->validated('image');
+        // if($image === null || $image ->getError() ){
+        //     return $data;
+        // }
+        // //la je traite les données de l'instance du model
+        // if($property -> image ){
+        //     Storage::disk('public')->delete($property -> image);
+        // }
+        // $data['image'] = $image -> store('propertyImg', 'public');
+        // // dd($data);
+       
+        $property = Property::create( $this -> extractDataWithImage($request,  $property ));
         $property ->options()->sync($request->validated('options')); 
         return to_route('admin.property.index')->with('success', 'Le bien a bien été crée');
     }
-
-  
-
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -79,7 +89,7 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update( Property $property, PropertyFormRequest $request) 
+    public function update( PropertyFormRequest $request,  Property $property,) 
     {
         // /** @var UploadFile | null $image */
         $property ->update($this -> extractDataWithImage( $property, $request ) );
@@ -87,14 +97,15 @@ class PropertyController extends Controller
         return to_route('admin.property.index')->with('success', 'Le bien a bien été édité');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property, PropertyFormRequest $request )
-    {
-
-        $property->delete($this -> extractDataWithImage( $property, $request ));
+    public function destroy(Property $property )
+    {  
+        if($property -> image ){
+            Storage::disk('public')->delete($property -> image);
+        }
+        $property->delete( $property );
         return to_route('admin.property.index')->with('success', 'Le bien a bien été supprimé');     
     }
 
