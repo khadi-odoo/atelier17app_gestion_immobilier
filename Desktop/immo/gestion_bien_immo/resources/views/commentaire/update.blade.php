@@ -23,10 +23,7 @@
         <form action="/update/traitement" method="POST">
         @csrf
         <input type="text" class="form-control" style="display:none" name="id" value="{{$commentaires->id}}">
-    <div class="form-group">
-        <label for="exampleInputEmail1" class="form-label mt-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nom</font></font></label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez name" name="auteur" value="{{$commentaires->auteur}}">
-      </div>
+
 
     <label for="exampleTextarea" class="form-label mt-4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">donner votre apercu du bien</font></font></label><br><br>
     <textarea class="form-control" id="exampleTextarea" rows="3" name="contenu">{{ $commentaires->contenu }}</textarea>

@@ -33,16 +33,16 @@ class CommentairesController extends Controller
     public function commentaire_ajouter(Request $request)
     {
         $request->validate([
-            'auteur' => 'required|alpha|max:20',
+
             'contenu' => 'required|between:0,100',
         ]);
+        //dd($request->id);
         //On crée une nouvelle instance du modèle Commentaires
         $commentaire = new Commentaires();
         //On attribue les valeurs des champs du formulaire aux propriétés du modèle Commentaires
-        $commentaire->id = $request->id;
-        $commentaire->auteur = $request->auteur;
+        $commentaire->auteur = Auth::user()->name;
         $commentaire->contenu = $request->contenu;
-        $commentaire->user_id = 1;
+        $commentaire->user_id = $request -> id;
         $commentaire->bien_id = $request->bien_id;
 
         $commentaire->save();
@@ -59,25 +59,26 @@ class CommentairesController extends Controller
     public function rules()
     {
         return [
-            'auteur' => 'required',
+
             'contenu' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'auteur.required' => 'Desolé! Le champ auteur est obligatoire',
             'contenu.required' => 'Desolé! Le champ contenu est obligatoire',
         ];
     }
 
     public function update_traitement(Request $request)
     {
+      
         $request->validate($this->rules(), $this->messages());
 
-        $commentaires = Commentaires::find($request->id);
-        $commentaires->id = $request->id;
-        $commentaires->auteur = $request->auteur;
+       //dd(Auth::user()->name);
+        $commentaires = Commentaires::findOrFail($request->id);
+        //$commentaires->id = $request->id;
+        $commentaires->auteur = Auth::user()->name;
         $commentaires->contenu = $request->contenu;
         $commentaires->update();
         return redirect('/comment_liste')->with('status', 'commentaire Modifier avec succèss');

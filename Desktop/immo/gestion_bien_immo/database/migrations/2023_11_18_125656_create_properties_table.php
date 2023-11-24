@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('address');
             $table->string('postal_code');
             $table->boolean('sold');
+            // $table ->string('green_area');
+            // $table ->string('terrace');
             $table->timestamps();
         });
     }
