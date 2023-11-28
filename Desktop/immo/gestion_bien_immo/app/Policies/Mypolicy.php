@@ -13,10 +13,6 @@ class Mypolicy
     {
         //
     }
-
-    public function(User $user) {
-
-
-
-    }
+    
+   
 }

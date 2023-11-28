@@ -18,6 +18,7 @@ class PropertyController extends Controller
         // La je traite les données qui sont envoyé par le navigateur
         $data = $request -> validated();
         $image = $request ->validated('image');
+        //dd($image);
         if($image === null || $image ->getError() ){
             return $data;
         }
@@ -92,7 +93,7 @@ class PropertyController extends Controller
     public function update( PropertyFormRequest $request,  Property $property,) 
     {
         // /** @var UploadFile | null $image */
-        $property ->update($this -> extractDataWithImage( $property, $request ) );
+        $property ->update($this -> extractDataWithImage( $request,  $property ) );
         $property ->options()->sync($request->validated('options')); 
         return to_route('admin.property.index')->with('success', 'Le bien a bien été édité');
     }

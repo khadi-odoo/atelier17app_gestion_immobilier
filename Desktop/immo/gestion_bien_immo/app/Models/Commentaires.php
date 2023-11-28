@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Property;
 
 class Commentaires extends Model
 {
@@ -20,8 +21,8 @@ class Commentaires extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function biens()
+    public function property()
     {
-        return $this->belongsToMany(Biens::class);
+        return $this->belongsToMany(Property::class);
     }
 }

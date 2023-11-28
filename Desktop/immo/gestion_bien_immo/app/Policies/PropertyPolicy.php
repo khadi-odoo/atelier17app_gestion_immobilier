@@ -37,7 +37,11 @@ class PropertyPolicy
      */
     public function update(User $user, Property $property): bool
     {
-        return $user->role === 'admin'
+        $roles = Role::all();
+        $role = $roles -> role; 
+       $user =  Auth::user()->role_id;
+       
+        return $user->role === '2'
             ? Response::allow()
             : Response::deny('Vous n\'avez pas les droits requis pour cette action');
     }
@@ -47,7 +51,7 @@ class PropertyPolicy
      */
     public function delete(User $user, Property $property): bool
     {
-        return $user->role === 'admin';
+        return $user->role === '2';
     }
 
     /**

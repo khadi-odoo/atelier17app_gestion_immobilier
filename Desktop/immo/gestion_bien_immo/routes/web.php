@@ -64,6 +64,7 @@ Route::middleware(['auth', 'verified'])->controller(CommentairesController::clas
 Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']); 
+    Route::resource('room', RoomController::class)->except(['show']);
 
 });
 

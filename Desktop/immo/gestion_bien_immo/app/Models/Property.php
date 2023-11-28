@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 
+
 class Property extends Model
 {
     use HasFactory;
@@ -18,29 +19,49 @@ class Property extends Model
         "title",
         "description",
         "surface",
-        "rooms",
-        "bedrooms",
         "floor",
         "price",
         "city",
         "address",
         "postal_code",
         "sold",
-        "image",
+        "green_area",
+        'image',
+       
     ];
 
-    public function options(): BelongsToMany {
+    // relations 
+    public function options(): BelongsToMany 
+    {
         return $this->belongsToMany(Option::class);
     }
 
-    public function getSlug() : string {
+    public function room(): hasmany 
+    {
+        return $this->hasMany(BedRoom::class);
+    } 
+
+    public function LinvingRoom(): hasmany 
+    {
+        return $this->hasMany(LinvingRoom::class);
+    }
+
+    //for the next 
+    
+
+    // Simple function 
+
+    public function getSlug(): string 
+    {
         return str::slug($this->title);
     }
     
-    public function imageUrl() :string
+    public function imageUrl(): string
     {
         return Storage::disk('public')->url($this -> image);
     } 
+
+    
 }
 
 

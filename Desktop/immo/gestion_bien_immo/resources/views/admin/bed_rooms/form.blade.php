@@ -35,8 +35,8 @@
         @include('shared.select', [ 'name' => 'options', 'label' => 'Cliquer pour selectionner une Options : ',  'value' => $property->options()->pluck('id'), 'options'=> $options, 'multiple' => true] )     
     </div>
     <div class="row">
-        @include('shared.checkbox', [ 'class' =>'col-pl-2', 'name' => 'sold', 'label' => 'Vendu',  'value' => $property->sold  ])     
-        @include('shared.checkbox', [  'name' => 'green_area', 'label' => 'Espace vert',  'value' => $property->green_area  ])     
+        @include('shared.checkbox', [ 'name' => 'sold', 'label' => 'Vendu',  'value' => $property->sold  ])     
+        @include('shared.checkbox', [ 'class' =>'col' 'name' => 'green_area', 'label' => 'Espace vert',  'value' => $property->green_area  ])     
     </div>
 
     <div class="row mt-3">

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PropertyFormRequest extends FormRequest
+class BedRoomFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,10 @@ class PropertyFormRequest extends FormRequest
         return [
             'title' => ['required', 'min:4'],
             'description' => ['required', 'min:8'],
-            'surface' => ['required', 'integer', 'min:10'],
-            'floor' => ['required', 'integer', 'min:0'],
-            'price' => ['required', 'integer', 'min:10'],
-            'city' => ['required', 'min:1'],
-            'address' => ['required', 'min:2'],
-            'postal_code' => ['required',  'min:3'],
-            'sold' => ['required', 'boolean'],
-            'options' => ['array', 'exists:options,id'],
+            'surface' => ['required', 'float', 'min:10'],
+            'toilet' => ['required', 'string'],
             'image' => ['max:2000'],
-            'green_area' => ['required', 'boolean'],
+            'balcony' => ['required', 'integer'],
         ];
     }
 }

@@ -5,7 +5,7 @@
     $name ??= '';
     $value ??= '';
     $label ??= ucfirst($name);
-@endphp
+@endphp 
 <div @class(['form-group', $class])">
     <label for="{{ $name }}"> {{ $label }} </label>
     @if ($type === 'textarea')

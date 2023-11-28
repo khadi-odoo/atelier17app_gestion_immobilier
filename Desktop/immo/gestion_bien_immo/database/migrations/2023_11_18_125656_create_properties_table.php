@@ -15,16 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('surface');
-            $table->string('rooms');
-            $table->string('bedrooms');
-            $table->string('floor');
+            $table->float('surface');
+            $table->integer('floor');
             $table->integer('price');
             $table->string('city');
             $table->string('address');
+            $table->binary('image');
             $table->string('postal_code');
+            $table ->boolean('green_area');
             $table->boolean('sold');
-            // $table ->string('green_area');
+
+
+
+            // $table->string('rooms');
+            // $table->string('bedrooms');
             // $table ->string('terrace');
             $table->timestamps();
         });

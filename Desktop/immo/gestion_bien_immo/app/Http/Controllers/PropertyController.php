@@ -8,7 +8,7 @@ use App\Mail\PropertyContactMail;
 use App\Http\Requests\PropertyContactRequest;
 use App\Http\Requests\SearchPropertiesRequest;
 use Illuminate\Support\Facades\Gate;
-
+use App\Models\User;
 class PropertyController extends Controller
 {
     /**
@@ -29,6 +29,8 @@ class PropertyController extends Controller
         if ($title =  $request->validated('title')) {
             $query = $query->where('title', 'like', "%$title%");
         }
+    
+    
         // dd($request->validated('title'));
         $properties = Property::paginate(16);
         return view('property.index', [

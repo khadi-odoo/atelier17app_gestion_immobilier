@@ -29,7 +29,8 @@ class User extends Authenticatable
         'first_name',
         'email',
         'password',
-        'role',
+        'role_id',
+       
 
 
     ];
@@ -45,7 +46,6 @@ class User extends Authenticatable
     ];
 
 
-
     /**
      * The attributes that should be cast.
      *
@@ -55,4 +55,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /** @var relations */
+    public function role() : BelongsTo 
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

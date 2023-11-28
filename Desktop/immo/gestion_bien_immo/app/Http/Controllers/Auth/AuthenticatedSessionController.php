@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
 
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('admin.property.index');
+            //return redirect()->route('admin.property.index');
             return to_route('admin.property.index');
         } elseif (Auth::user()->role == 'user') {
             return redirect()->intended();
