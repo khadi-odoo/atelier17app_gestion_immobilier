@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Routing\RouteFileRegistrar;
 use App\Http\Middleware;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\IsAdminMiddleware;
+use Illuminate\Routing\RouteFileRegistrar;
 
 //use de bouh
-use App\Http\Controllers\CommentairesController;
+use App\Http\Controllers\ProfileController;
 //use de ciré
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\CommentairesController;
+use App\Http\Controllers\Admin\BedRoomController;
 use \App\Http\Controllers\Admin\PropertyController;
 
 /*
@@ -64,7 +65,7 @@ Route::middleware(['auth', 'verified'])->controller(CommentairesController::clas
 Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']); 
-    Route::resource('room', RoomController::class)->except(['show']);
+    Route::resource('BedRoom', BedRoomController::class)->except(['show']);
 
 });
 

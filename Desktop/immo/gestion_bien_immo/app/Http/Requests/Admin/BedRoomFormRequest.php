@@ -22,12 +22,14 @@ class BedRoomFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:4'],
-            'description' => ['required', 'min:8'],
-            'surface' => ['required', 'float', 'min:10'],
+            'name' => ['required', 'string', 'min:4'],
+            'number' => ['required', 'integer'],
+            'surface' => ['required', 'integer'],
+            'description' => ['required'],
             'toilet' => ['required', 'string'],
             'image' => ['max:2000'],
             'balcony' => ['required', 'integer'],
+            'property_id' => ['required'],
         ];
     }
 }

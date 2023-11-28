@@ -32,7 +32,7 @@
     </div>
 
     <div class="row justify-content-center" >
-        @include('shared.select', [ 'name' => 'options', 'label' => 'Cliquer pour selectionner une Options : ',  'value' => $property->options()->pluck('id'), 'options'=> $options, 'multiple' => true] )     
+        @include('shared.select', [ 'name' => 'options', 'label' => 'Cliquer pour selectionner une Options : ',  'value' => $property->options()->pluck('id'), 'values'=> $options, 'options'=> $options, 'multiple' => true] )     
     </div>
     <div class="row">
         @include('shared.checkbox', [ 'class' =>'col-pl-2', 'name' => 'sold', 'label' => 'Vendu',  'value' => $property->sold  ])     

@@ -17,6 +17,7 @@ class BedRoom extends Model
         'description',
         'toilet',
         'balcony',
+        'property_id',
     ];
 
     //relations

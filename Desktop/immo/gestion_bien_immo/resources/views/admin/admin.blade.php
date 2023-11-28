@@ -43,9 +43,9 @@
                 <li class="sidebar-brand"> <a href="#"> Start Bootstrap </a> </li>
                 <li> <a class="nav-link" href="{{ route('admin.property.index') }}" @class(['nav-link', 'active' => str_contains($route, 'property.')])>Gérer
                         les bien</a></li>
-                <li> <a class="nav-link" href="{{ route('admin.option.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les
-                        options</a> </li>
-                <li> <a href="#">Gestion des options</a> </li>
+                <li> <a class="nav-link" href="{{ route('admin.option.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les options</a> </li>
+                <li> <a class="nav-link" href="{{ route('admin.BedRoom.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les chambres</a> </li>
+              
                 <li> <a href="#">Gestion des chambres</a> </li>
                 <li> <a href="#">Gestion des salons </a> </li>
                 {{-- <li> <a href="#">About</a> </li> --}}
