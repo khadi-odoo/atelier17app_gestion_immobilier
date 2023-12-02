@@ -5,7 +5,7 @@
 @section('content')
 @yield('title')
 
-<form class="vstack gap-2" action="{{ route( $property ->exists ? 'admin.property.update' : 'admin.property.store', ['property' =>  $property ] ) }}" method="post"  enctype="multipart/form-data"s  >
+<form class="vstack gap-2" action="{{ route( $property ->exists ? 'admin.property.update' : 'admin.property.store', ['property' =>  $property ] ) }}" method="post"  enctype="multipart/form-data"  >
     @csrf
     @method($property->exists ? 'put' : 'post')
 

@@ -33,4 +33,4 @@ class IsAdminMiddleware
 
         return $next($request);
     }
-};;;;;;;;;
+};

@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class Property extends Model
 {
     use HasFactory;
@@ -26,8 +24,7 @@ class Property extends Model
         "postal_code",
         "sold",
         "green_area",
-        'image',
-       
+        'image', 
     ];
 
     // relations 

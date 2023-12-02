@@ -15,6 +15,7 @@ use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\Admin\BedRoomController;
 use \App\Http\Controllers\Admin\PropertyController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
