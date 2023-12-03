@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Property;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BedRoom extends Model
 {
@@ -26,4 +28,8 @@ class BedRoom extends Model
         return $this -> BelongsTo(Property::class);
     }
 
+    public function pictures() : HasMany
+    {
+        return $this -> hasMany(Picture::class);
+    }
 }

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,7 +34,7 @@ class Property extends Model
         return $this->belongsToMany(Option::class);
     }
 
-    public function room(): hasmany 
+    public function room(): HasMany 
     {
         return $this->hasMany(BedRoom::class);
     } 

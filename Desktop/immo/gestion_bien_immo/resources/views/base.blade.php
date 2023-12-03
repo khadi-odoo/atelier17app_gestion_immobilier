@@ -10,6 +10,9 @@
 
     {{-- Link for icon boostrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    {{-- local boostrap --}}
+    <link rel="stylesheet" href=" {{ asset('css/bootstrap.min.css') }} ">
     <title>@yield('title') | MonAgence </title>
 </head>
 

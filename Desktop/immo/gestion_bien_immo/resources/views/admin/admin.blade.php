@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        {{-- local boostrap --}}
+        {{-- <link rel="stylesheet" href=" {{ asset('css/bootstrap.min.css') }} "> --}}
     <title>@yield('title') | Administration </title>
 </head>
 
@@ -46,8 +48,8 @@
                 <li> <a class="nav-link" href="{{ route('admin.option.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les options</a> </li>
                 <li> <a class="nav-link" href="{{ route('admin.BedRoom.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les chambres</a> </li>
               
-                <li> <a href="#">Gestion des chambres</a> </li>
-                <li> <a href="#">Gestion des salons </a> </li>
+                <li> <a href="#">Gestion des salons</a> </li>
+                <li> <a href="{{route('admin.picture.index')}}">Gérer les images </a> </li>
                 {{-- <li> <a href="#">About</a> </li> --}}
                 {{-- <li> <a href="#">Services</a> </li> --}}
                 {{-- <li> <a href="#">Contact</a> </li> --}}

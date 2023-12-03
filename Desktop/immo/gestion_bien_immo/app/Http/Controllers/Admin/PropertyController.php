@@ -74,7 +74,7 @@ class PropertyController extends Controller
         // // dd($data);
        
         $property = Property::create( $this -> extractDataWithImage($request,  $property ));
-        $property ->options()->sync($request->validated('options')); 
+        $property ->options()->sync($request->validated('options'));
         return to_route('admin.property.index')->with('success', 'Le bien a bien été crée');
     }
     /**
@@ -82,6 +82,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {  
+        dd($property->id);
         return view('admin.properties.form', ['property' => $property, 'options' =>Option::pluck('name', 'id') ]);
     }
 
@@ -102,7 +103,7 @@ class PropertyController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Property $property )
-    {  
+    {
         if($property -> image ){
             Storage::disk('public')->delete($property -> image);
         }

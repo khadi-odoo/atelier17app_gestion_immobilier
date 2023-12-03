@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\CommentairesController;
 use App\Http\Controllers\Admin\BedRoomController;
+use App\Http\Controllers\Admin\PictureController;
 use \App\Http\Controllers\Admin\PropertyController;
 
 
@@ -67,6 +68,8 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']); 
     Route::resource('BedRoom', BedRoomController::class)->except(['show']);
+    Route::resource('picture', PictureController::class)->except([ 'create','show']);
+    Route::get('/picture/create/{property}', [PictureController::class, 'create'])->name('picture.create');
 
 });
 

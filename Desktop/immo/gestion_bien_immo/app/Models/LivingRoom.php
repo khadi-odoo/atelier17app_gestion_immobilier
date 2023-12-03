@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Picture;
 use App\Models\Property;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LivingRoom extends Model
 {
@@ -18,8 +21,13 @@ class LivingRoom extends Model
     ];
 
     //relations
-    public function Property() : BelognsTo 
+    public function Property() : BelongsTo 
     {
         return $this -> belongsTo(Property::class);
+    }
+    
+    public function pictures() : HasMany
+    {
+        return $this -> hasMany(Picture::class);
     }
 }

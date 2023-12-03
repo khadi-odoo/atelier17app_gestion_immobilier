@@ -9,6 +9,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        {{-- local boostrap --}}
+        <link rel="stylesheet" href=" {{ asset('css/bootstrap.min.css') }} ">
     <title>@yield('title') | Administration </title>
 </head>
 
