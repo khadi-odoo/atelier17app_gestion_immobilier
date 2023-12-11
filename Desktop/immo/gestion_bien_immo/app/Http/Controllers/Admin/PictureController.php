@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Picture;
-
 use App\Models\Option;
+use App\Models\Picture;
+// use Illuminate\Http\UploadedFile;
 use App\Models\Property;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\PictureFormRequest;
-
-use App\Models\BedRoom;
-use App\Models\LivingRoom;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Admin\PictureFormRequest;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Symfony\Component\HttpFoundation\Request;
 
 class PictureController extends Controller
 {
@@ -30,20 +28,20 @@ class PictureController extends Controller
         if($picture -> image ){
             Storage::disk('public')->delete($picture -> image);
         }
-        $data['image'] = $image -> store('propertyImg', 'public');
+        $data['image'] = $image -> store('pictureImg', 'public');
         // dd($data);
         return $data;
 
     }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index() 
-    {
-       //dd(BedRoom::with('Property'));
+    {    
         return view('admin.pictures.index', [
             'properties' =>Property::orderBy('created_at', 'desc')->paginate(9)
-
         ]);
     }
 
@@ -52,48 +50,48 @@ class PictureController extends Controller
      */
     public function create(Property $property)
     {
-        $picture = new Picture();
         return view('admin.pictures.form', [
-            'picture' => $picture,
-            'property' => $property
-         
-            //'property' => $property, 'options' =>Option::pluck('name', 'id')
+            'picture' => new Picture(),
+            'property' => $property,
+            'options' => Option::pluck('name', 'id'),
+
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PictureFormRequest $request, Picture $picture)
-    {
-        $picture = Picture::create($this -> extractDataWithImage($request,  $picture ));
-        return to_route('admin.picture.index')->with('success', 'L\'picture a bien été crée');
-    }
+     public function store(PictureFormRequest $request, Picture $picture, Property $property )
+    {   
+        dd($property->id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+       // $picture = Picture::create( $this -> extractDataWithImage($request,  $picture ));
+        $picture ->bedRooms()->sync($request->validated('picture'));
+        return to_route('admin.picture.index')->with('success', 'Le bien a bien été crée');
     }
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Property $property)
-    {  
-        dd($property->id);
-        return view('admin.pictures.form', ['property' => $property, 'options' =>Option::pluck('name', 'id') ]);
+    public function edit(Request $property)
+    {   
+        
+        return view('admin.pictures.form', [
+            'property' => $property, 
+            'options' =>Option::pluck('name', 'id'),
+            'picture' => new Picture(),
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PictureFormRequest $request, Picture $picture)
+    public function update( PictureFormRequest $request,  Picture $picture,) 
     {
+        // /** @var UploadFile | null $image */
         $picture ->update($this -> extractDataWithImage( $request,  $picture ) );
-        return to_route('admin.picture.index')->with('success', 'L\'picture a bien été édité');
+        $picture ->options()->sync($request->validated('options')); 
+        return to_route('admin.picture.index')->with('success', 'Le bien a bien été édité');
     }
 
     /**
@@ -101,7 +99,12 @@ class PictureController extends Controller
      */
     public function destroy(Picture $picture )
     {
-        $picture->delete();
-        return to_route('admin.picture.index')->with('success', 'L\'picture a bien été supprimé');     
+        if($picture -> image ){
+            Storage::disk('public')->delete($picture -> image);
+        }
+        $picture->delete( $picture );
+        return to_route('admin.picture.index')->with('success', 'Le bien a bien été supprimé');     
     }
+
+   
 }

@@ -5,7 +5,6 @@
 
 <div class="d-flex justify-content-between algin-items-center">
     <h1>@yield('title')</h1>
-    <a href="{{route('admin.property.create')}}" class="btn btn-primary"> Liste des images d'un bien</a>
 </div>
 <table class="table table-striped">
 
@@ -31,16 +30,11 @@
                 {{ $option -> name }} <br>
                 @endforeach
             </td>
-            
-            <td> @include('shared.formBtn', [ 'method' =>'get', 'token' => false,  'value' => 'Ajouter une image', 'action' => 'admin.picture.create', 'argument' => $property ]) </td>
-            {{-- <td> @include('shared.formBtn', [ 'method' =>'get', 'token' => false,  'value' => 'Editer', 'action' => 'admin.picture.create', 'argument' => $property ]) </td>
-
-            <td> @include('shared.formBtn', [ 'anothermethod' => 'delete', 'class' => 'btn btn-danger', 'value' => 'Supprimer', 'action' => 'admin.picture.destroy', 'argument' => $property ]) </td> --}}
+            @dump($property)
+            <td> @include('shared.formBtn', [ 'method' =>'get', 'token' => false,  'value' => 'Ajouter une image', 'action' => 'admin.picture.create', 'argument' => $property]) </td>
         </tr>
         @endforeach
     </tbody>
-   
-   
    
 </table>
 {{ $properties -> links() }}

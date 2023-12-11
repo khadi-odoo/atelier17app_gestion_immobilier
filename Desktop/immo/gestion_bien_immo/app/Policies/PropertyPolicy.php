@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Property;
 use App\Models\User;
+use App\Models\Property;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyPolicy
 {
@@ -37,11 +38,10 @@ class PropertyPolicy
      */
     public function update(User $user, Property $property): bool
     {
-        $roles = Role::all();
-        $role = $roles -> role; 
-       $user =  Auth::user()->role_id;
+
+       $user =  Auth::user()->role;
        
-        return $user->role === '2'
+        return $user->role === 'admin'
             ? Response::allow()
             : Response::deny('Vous n\'avez pas les droits requis pour cette action');
     }
@@ -51,7 +51,7 @@ class PropertyPolicy
      */
     public function delete(User $user, Property $property): bool
     {
-        return $user->role === '2';
+        return $user->role === 'admin';
     }
 
     /**

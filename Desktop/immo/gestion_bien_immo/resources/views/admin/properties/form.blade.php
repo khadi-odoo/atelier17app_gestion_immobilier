@@ -17,7 +17,6 @@
     </div>
     <div class=" row-1 ">
         @include('shared.input', [ 'type' => 'textarea', 'name' => 'description', 'value' => $property->description] )
-
     </div>
     
     <div class="row">

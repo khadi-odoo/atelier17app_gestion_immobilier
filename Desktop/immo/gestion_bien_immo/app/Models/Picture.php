@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Picture extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'image',
+    ];
 
     public function property() : BelongsTo 
     {
@@ -22,7 +25,7 @@ class Picture extends Model
         return $this ->belongsTo(BedRoom::class);
 
     }
-    public function lingRooms() : BelongsTo
+    public function linvingRooms() : BelongsTo
     {
         return $this ->belongsTo(LivingRoom::class);
     }

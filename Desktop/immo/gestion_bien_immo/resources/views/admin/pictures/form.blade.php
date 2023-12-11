@@ -1,24 +1,31 @@
 @extends('admin.admin')
 
-@section('title', $property ->exists ? 'Ajouter image à ce un bien ' : 'Créer un bien' )
-
+@section('title', $picture ->exists ? 'Editer un bien ' : 'Créer un bien' )
 
 @section('content')
+@yield('title')
 
-<form class="vstack gap-2" action="{{ route( $property ->exists ? 'admin.property.update' : 'admin.property.store', ['property' =>  $property ] ) }}" method="post"  enctype="multipart/form-data"  >
+@dump($property->id)
+<form class="vstack gap-2" action="{{ route( $picture ->exists ? 'admin.property.update' : 'admin.picture.store', ['picture' =>  $picture ] ) }}" method="post"  enctype="multipart/form-data"  >
     @csrf
-    @method($property->exists ? 'put' : 'post')
-    <h3>Ajouter l'image de la chambre correspondant à ce bien </h3>
-    @include('shared.input', [ 'type' => 'file', 'class' => 'col' ,  'label' => 'Ajouter votre Image', 'name' => 'image' ] )   
+    @method($picture->exists ? 'put' : 'post')
+
+    <div class=" row">
+            @include('shared.input', [ 'type' => 'file', 'class' => 'col' ,  'label' => 'Ajouter votre Image', 'name' => 'image'] )   
+            @include('shared.input', [ 'type' => 'hidden', 'class' => 'col' ,  'label' => '', 'name' => 'property_id', 'value' => $property->id] )
+    </div>
+
     <div class="row mt-3">
-        @include('shared.submitBtn', [ 'value' =>  $property -> exists ? 'Ajouter ' : 'Créer'  ] )        
-        </div>
+    @include('shared.submitBtn', [ 'value' =>  $picture -> exists ? 'Editer' : 'Créer'  ] )
+    </div>
+
+    {{-- Affichage d'information déjà existant aucun traitement nest fais en dessous  --}}
+
     <hr style="border-width: 5px; border-color: rgba(0, 132, 255, 0.396);"> 
-    <h3>Information du bien </h3>
-    
+    <h3>Information du bien </h3>  
+    @include('shared.input', [ 'class' => 'col' , 'name' => 'title', 'value' => $property->title ] )
     @include('shared.forView.image', [ 'class' => 'card-img-top' , 'source' => 'property', 'width'=> '350', 'height' =>'350'  ] )
     <div class=" row">
-        {{-- <img src="{{ $property->imageUrl() }}" class="card-img-top" alt=""> --}}
             @include('shared.input', [ 'class' => 'col' ,  'label' => 'Surface', 'name' => 'surface', 'value' => $property->surface, 'readonly'=>true ] )
             @include('shared.input', [ 'class' => 'col' ,  'label' => 'Prix', 'name' => 'price', 'value' => $property->price, 'readonly'=>true ] )   
     </div>
@@ -46,13 +53,6 @@
         @include('shared.checkbox', [  'name' => 'green_area', 'label' => 'Espace vert',  'value' => $property->green_area, 'disabled'=>true  ])     
     </div>
 
-   
-   
-
-    {{-- <input class ="btn btn-primary" type="submit" value=" @if($property -> exists) Editer @else Créer @endif"> --}}
-    {{-- <button class ="btn btn-primary" type="submit">
-        @if($property -> exists) Editer @else Créer @endif"
-    </button> --}}
    
 </form>
 @stop

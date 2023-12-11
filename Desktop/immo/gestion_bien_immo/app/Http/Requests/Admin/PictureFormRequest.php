@@ -11,7 +11,7 @@ class PictureFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class PictureFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'images' => ['required', 'image'],
+            'image' => ['required', 'image'],
+            //'property_id' => ['required', 'interger'],
         ];
     }
 }

@@ -61,18 +61,7 @@ class PropertyController extends Controller
      */
     public function store(PropertyFormRequest $request, Property $property	)
     {     
-        // $data = $request -> validated();
-        // $image = $request ->validated('image');
-        // if($image === null || $image ->getError() ){
-        //     return $data;
-        // }
-        // //la je traite les données de l'instance du model
-        // if($property -> image ){
-        //     Storage::disk('public')->delete($property -> image);
-        // }
-        // $data['image'] = $image -> store('propertyImg', 'public');
-        // // dd($data);
-       
+      
         $property = Property::create( $this -> extractDataWithImage($request,  $property ));
         $property ->options()->sync($request->validated('options'));
         return to_route('admin.property.index')->with('success', 'Le bien a bien été crée');

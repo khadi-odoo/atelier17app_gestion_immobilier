@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Property::class => PropertyPolicy::class,
         Commentaires::class => PropertyPolicy::class,
+        Picture::class => PropertyPolicy::class,
 
     ];
 
@@ -28,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('delete-user', function (User $user) {
-            return $user->admin;
+            return $user->role->admin;
         });
     }
 }

@@ -68,9 +68,12 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('property', PropertyController::class)->except(['show']);
     Route::resource('option', OptionController::class)->except(['show']); 
     Route::resource('BedRoom', BedRoomController::class)->except(['show']);
-    Route::resource('picture', PictureController::class)->except([ 'create','show']);
+    Route::resource('picture', PictureController::class )->except(['show']);
     Route::get('/picture/create/{property}', [PictureController::class, 'create'])->name('picture.create');
-
+    //Route::post('/picture/store', [PictureController::class, 'store'])->middleware(['auth', 'isAdmin'])->name('picture.store');
+ 
+    
+   
 });
 
 
