@@ -32,6 +32,21 @@ class UserFactory extends Factory
         ];
     }
 
+    public function admin() : UserFactory
+    {
+
+     return $this->state([
+         'name' => $this->faker->name,
+         'first_name' => $this->faker->firstName,
+         'email' => 'admin@admin.com',
+         'email_verified_at' => now(),
+         'remember_token' => Str::random(10),
+         'role' => 'admin',
+         'password' => Hash::make('password'),
+     ]);
+
+    }
+
     /**
      * Indicate that the model's email address should be unverified.
      */

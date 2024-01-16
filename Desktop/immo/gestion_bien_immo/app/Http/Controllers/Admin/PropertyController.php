@@ -71,7 +71,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {  
-        dd($property->id);
+        // dd($property->id);
         return view('admin.properties.form', ['property' => $property, 'options' =>Option::pluck('name', 'id') ]);
     }
 

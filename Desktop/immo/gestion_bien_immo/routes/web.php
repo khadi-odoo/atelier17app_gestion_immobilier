@@ -49,7 +49,7 @@ Route::middleware(['auth', 'verified'])->prefix('biens')->group( function(){
         'property' => $idRegex
     ]);
 
-} );
+});
 
 Route::middleware(['auth', 'verified'])->controller(CommentairesController::class)->group( function(){
 
@@ -69,7 +69,7 @@ Route::middleware(['auth', 'verified', 'isAdmin'])->prefix('admin')->name('admin
     Route::resource('option', OptionController::class)->except(['show']); 
     Route::resource('BedRoom', BedRoomController::class)->except(['show']);
     Route::resource('picture', PictureController::class )->except(['show']);
-    Route::get('/picture/create/{property}', [PictureController::class, 'create'])->name('picture.create');
+    // Route::get('/picture/create/{property}', [PictureController::class, 'create'])->name('picture.create');
     //Route::post('/picture/store', [PictureController::class, 'store'])->middleware(['auth', 'isAdmin'])->name('picture.store');
  
     
