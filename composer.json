@@ -1,0 +1,5 @@
+{
+    "require": {
+        "mezatsong/laravel-swagger-docs": "^1.6"
+    }
+}

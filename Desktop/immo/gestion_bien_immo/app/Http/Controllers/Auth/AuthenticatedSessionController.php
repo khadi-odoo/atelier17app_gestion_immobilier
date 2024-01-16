@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\IsAdminMiddleware;
 use Illuminate\View\View;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,7 +32,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+
+        if (Auth::user()->role == 'admin') {
+            //return redirect()->route('admin.property.index');
+            return to_route('admin.property.index');
+        } elseif (Auth::user()->role == 'user') {
+            return redirect()->intended();
+            //return Redirect::route('home');
+
+        }
+
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

@@ -20,13 +20,31 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $roles = ['admin', 'user', 'manager'];
         return [
             'name' => fake()->name(),
+            'first_name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => 'password',
             'remember_token' => Str::random(10),
+            'role' => $roles[mt_rand(0,2)],
         ];
+    }
+
+    public function admin() : UserFactory
+    {
+
+     return $this->state([
+         'name' => $this->faker->name,
+         'first_name' => $this->faker->firstName,
+         'email' => 'admin@admin.com',
+         'email_verified_at' => now(),
+         'remember_token' => Str::random(10),
+         'role' => 'admin',
+         'password' => Hash::make('password'),
+     ]);
+
     }
 
     /**
